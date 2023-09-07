@@ -1,0 +1,81 @@
+cs vs java
+
+Organization
+    folders
+        cs
+            namespaces
+        java
+            packages
+
+naming conventions
+    class-level variables
+        cs
+            properties
+            private: camelCase
+            public: UpperCameCase aka PascalCase
+        java
+            instance variables
+                camelCase
+
+    methods
+        cs
+            PascalCase
+        java
+            camelCase
+    classes
+        cs & java
+            PascalCase
+
+output
+    cs
+        Console.Write/WriteLine
+    java
+        System.out.print/println()
+        sout+tab => System.out.println()
+
+input
+    cs
+        Console.ReadLine(): data type = string
+    java
+        Scanner object => imported => import java.util.Scanner;
+        Scanner input = new Scanner(System.in);
+        input.next
+                Line
+                Int
+                Double
+
+
+
+Data Types
+    cs
+        char
+        string
+        bool
+        float
+        null
+        double
+        int
+        long
+        short
+        byte
+        sbyte
+        ulong
+        ushort
+
+    java
+        no signed, unsigned
+        boolean
+        String
+
+char letter = 'A';
+int num = letter; /// 65
+
+
+
+accessibility levels
+
+    java
+        public
+        private: only accessible inside class
+        package
+        default
