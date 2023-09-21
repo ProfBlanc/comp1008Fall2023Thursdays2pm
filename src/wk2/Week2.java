@@ -9,7 +9,9 @@ public class Week2 {
 
     public static void main(String[] args) {
 
-        example4();
+        //example4();
+        //ctl+g => go to a line
+        chooseCoat();
     }
 
     //highlight, ctl+?
@@ -170,5 +172,93 @@ public class Week2 {
 
         System.out.println(result);
 
+
+    }
+
+    static void chooseCoat(){
+        /*
+        We are going to create a program that chooses the coat we should wear
+        Based on: season, month, temperature
+        Be back at: 15:20
+         */
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter season");
+        String season = input.nextLine();
+        System.out.println("Enter month");
+        String month = input.nextLine();
+        System.out.println("Enter temperature");
+        double temperature = input.nextDouble();
+        //create 2 static boolean methods that validate the season and month
+
+        if(validateSeason(season) && validateMonth(month)){
+
+            /*
+                create your own, personal, customize code to decide which coat to wear
+                if summer
+                    month is september
+                        if temp is 15+: no coat
+                        if temp < 15: light coat
+                    else
+                        no coat
+                if fall
+                    on months
+                        september: light coat
+                        october: wind coat
+                        november: winter coat
+                        december: heavy duty coat
+             */
+
+            String coat = "N/A";
+            if(season.equalsIgnoreCase("summer")){
+                if(month.substring(0,3).equalsIgnoreCase("sep") &&
+                        temperature < 15){
+                    coat = "Light Coat";
+                }
+                else{
+                    coat = "No coat";
+                }
+            }
+            else if(season.equalsIgnoreCase("fall")){
+                coat = switch (month.substring(0,3).toLowerCase()){
+                    case "sep": yield "Light Coat";
+                    case "oct": yield "Wind Coat";
+                    case "nov": yield "Winter Coat";
+                    default: yield "Heavy Duty Coat";
+                };
+            }
+            /*
+                    String formatting
+                    Console.WriteLine($"I am {} years old. I love the {} programming lang"
+                    , 100, "Java");
+                    System.out.printf()
+                    %DataType
+                        %s
+                        %d
+                        %f
+             */
+            System.out.printf("In the %s season, during the %s month, with a " +
+                    "temperature of %f, you should wear %s%n", season, month,temperature,coat);
+        }
+        else{
+            //serr+tab
+            System.err.println("Season and/or Month is invalid");
+        }
+    }
+    static boolean validateSeason(String season){
+
+        return season.equalsIgnoreCase("wiNtEr") ||
+                season.equalsIgnoreCase("fall") ||
+                season.equalsIgnoreCase("summer") ||
+                season.equalsIgnoreCase("spring");
+    }
+
+    static boolean validateMonth(String month){
+        //  m   a   r   c   h
+        //  0   1   2   3   4
+        return switch (month.toLowerCase().substring(0,3)){
+            case "jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"
+                    : yield true;
+            default: yield false;
+        };
     }
 }
