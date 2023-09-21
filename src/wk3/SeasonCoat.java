@@ -42,7 +42,14 @@ public class SeasonCoat {
     }
 
     public void setSeason(String season) {
-        this.season = season;
+        season = season.toLowerCase();
+        this.season = switch (season){
+
+            case "winter","fall",
+                    "summer","spring": yield season;
+            default:yield "winter";
+
+        };
     }
 
     public String getMonth() {
@@ -50,15 +57,39 @@ public class SeasonCoat {
     }
 
     public void setMonth(String month) {
-        this.month = month;
+        month = month.toLowerCase().substring(0,3);
+        this.month = switch (month){
+            case "jan","feb","mar","apr","may","jun","jul",
+                    "aug","sep","oct","nov","dec": yield month;
+            default: yield "jan";
+        };
     }
 
     public String getCoat() {
         return coat;
     }
 
-    public void setCoat(String coat) {
-        this.coat = coat;
+    private void setCoat() {
+
+        if(season.equals("fall")){
+            if(month.equals("sep")){
+                coat = "light coat";
+            } else if (month.equals("nov")) {
+                coat = "winter coat";
+            } else if (month.equals("dec")) {
+                coat = "heavy coat";
+            }
+        }
+        else if(season.equals("summer")){
+            coat = "no coat";
+        }
+        else if(season.equals("spring")){
+            coat = "light sweater";
+        }
+        else if(season.equals("winter")){
+            coat = "super warm coat";
+        }
+
     }
 
     public double getTemperature() {
@@ -70,4 +101,55 @@ public class SeasonCoat {
         if(temperature >= -50 && temperature <= 50)
             this.temperature = temperature;
     }
+
+    //constructor: order form => customize the object when initializing
+    /*
+        special method
+            no return data type
+            name exact same as class
+     */
+    public SeasonCoat(){}  //default constructor: always avaialble
+    // until you start adding new VARIATIONS of how to create an object
+
+    public SeasonCoat(String season, String month, double temperature){
+        setMonth(month);
+        setTemperature(temperature);
+        setSeason(season);
+        setCoat();
+    }
+    public SeasonCoat(double temperature, String season, String month){
+        this(season, month, temperature);
+    }
+    public SeasonCoat(String month, double temperature, String season){
+        this(season, month, temperature);
+    }
+    /*
+    method overloading
+        same method name
+            unique combo of
+                1) amount of parameters
+                2) order of data types
+     */
+
+    //summarize the object instance variables
+    //aka adding the toString
+
+
+    public String toString(){
+        return String.format("Season=%s, Month=%s, Temp=%.1f, Coat=%s%n",
+                season, month, temperature, coat);
+    }
+
+    /*
+    Overridding: change the result of calling the method
+    ??? Where does toString come from?
+    Object class
+        every class inherits from Object class
+            Default constructor()
+            toString()
+            equals(Object o)
+
+
+
+     */
 }
