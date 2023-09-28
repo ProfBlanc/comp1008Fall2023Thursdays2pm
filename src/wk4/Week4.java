@@ -2,7 +2,12 @@ package wk4;
 
 public class Week4 {
     public static void main(String[] args) {
-        example5();
+        example6();
+    }
+    static void example6(){
+
+        Student kid = Student.elementarySchoolStudent("Kid", 10, 90);
+        System.out.println(kid);
     }
     static void example5(){
         int i = 123;
