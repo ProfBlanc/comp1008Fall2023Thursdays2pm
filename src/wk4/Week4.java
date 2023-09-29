@@ -2,12 +2,58 @@ package wk4;
 
 public class Week4 {
     public static void main(String[] args) {
-        example6();
+        example7();
+    }
+    static void example7(){
+
+        //String ref or prim?
+        //SeasonCoat sc = "hello";
+        String s1 = "Hello";
+        //string is a hybrid.
+        s1 = "World";
+        String s2 = new String();
+        String s3 = new String("Hello");
+        String s4 = new String(new char[]{'B','e','n'});
+
+        System.out.println(s4);
+
+        //length: # of chars
+        //capacity: max # of chars
+        //capacity in NOT fixed
+        //increase by: +1, * 2
+        //capacity = 10   => 22
+        StringBuilder sb = new StringBuilder();  //l=0, cap=16
+        StringBuilder sb1 = new StringBuilder(20);// l=0, cap=20
+        StringBuilder sb2 = new StringBuilder("hello"); //l=5, cap = l + 16
+
+
+        sb2.deleteCharAt(1); //hllo
+        sb2.insert(2, "ben"); //hlbenlo
+        sb2.setLength(3);  //hlb
+        sb2.delete(0,2); // b
+        String b = sb2.toString();
+        System.out.println(sb2); //b
+        sb2.append("Hello");
+
+        sb2.append(123);
+        sb2.append(true);
+        sb2.append(12.34);
+        sb2.append("World");
+        System.out.println(sb2);
+        System.out.println(sb2.length());
+        System.out.println(sb2.capacity());
     }
     static void example6(){
 
         Student kid = Student.elementarySchoolStudent("Kid", 10, 90);
         System.out.println(kid);
+
+        Student s1 = Student.honorRollStudent("Smarty Pants", 20, 99);
+
+        Student s2 = Student.postSecondaryStudent();
+
+        System.out.println(s1);
+        System.out.println(s2);
     }
     static void example5(){
         int i = 123;

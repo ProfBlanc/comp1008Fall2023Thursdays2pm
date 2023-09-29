@@ -39,6 +39,16 @@ public class Student {
     //elementarySchoolStudent
     //highSchoolStudent
     //postSecondaryStudent
+    public static Student honorRollStudent(String name, int age, double grade){
+        return new Student(name, age, grade >= 80 ? grade : 80);
+    }
+    public static Student postSecondaryStudent(){
+
+        return new Student("Georgian College Student",
+                random.nextInt(17, 101),
+                random.nextInt(50, 101));
+    }
+
 
     @Override
     public String toString(){
