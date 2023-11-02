@@ -3,13 +3,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Week8 {
 
     public static void main(String[] args) {
            // example2();
         try{
-            example6();
+            example7();
         }
         catch (IOException e){
             System.err.println(e);
@@ -133,6 +134,27 @@ public class Week8 {
         for(File current : allFiles){
             System.out.printf("Is %s at directory? %s%n", current.getName(), current.isDirectory());
         }
+
+    }
+    static void example7() throws IOException{
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a file or folder name");
+        String userFile = input.nextLine();
+
+        Path userRoot = rootPath.resolve("data");
+        if(!Files.exists(userRoot)){
+            Files.createDirectory(userRoot);
+        }
+
+        if(userFile.contains(".")){
+            Files.createFile(userRoot.resolve(userFile));
+        }
+        else{
+            Files.createDirectory(userRoot.resolve(userFile));
+        }
+
+
 
     }
 
