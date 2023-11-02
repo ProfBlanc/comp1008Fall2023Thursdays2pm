@@ -11,7 +11,7 @@ public class Week8 {
     public static void main(String[] args) {
            // example2();
         try{
-            example12();
+            example13();
         }
         catch (IOException e){
             System.err.println(e);
@@ -194,6 +194,78 @@ public class Week8 {
 
         String content = Files.readString(rootPath.resolve("data/test.txt"));
         System.out.println(content);
+    }
+
+    static void example13() throws IOException{
+
+        StringBuilder sb = new StringBuilder(); //capacity 16, length=0
+        Scanner input = new Scanner(System.in);
+        String delimiter = "-";
+
+        System.out.println("Welcome to our Student Timetable Program");
+        System.out.println("You will enter your courses, organized by the year and term");
+        System.out.println("Enter the year");
+        sb.append(input.nextLine()).append(delimiter);
+        System.out.println("Enter the term (Winter, Summer or Fall)");
+        sb.append(input.nextLine()).append(delimiter);
+
+        Path rootDir = rootPath.resolve("timetable");
+        if(!Files.exists(rootDir)){
+            Files.createDirectory(rootDir);
+        }
+        Path semesterPath = rootDir
+                .resolve(sb.toString().split(delimiter)[0])
+                .resolve(sb.toString().split(delimiter)[1]);
+
+        if(!Files.exists(semesterPath)){
+            Files.createDirectories(semesterPath);
+        }
+
+
+        //split(text) => array   2023-fall-
+        System.out.printf("How many days of the week do you attend school in %s %s%n",
+                sb.toString().split(delimiter)[1],sb.toString().split(delimiter)[0] );
+
+        int numberOfDays = input.nextInt(); // 3
+        input.nextLine();
+
+        for(int i = 1; i <= numberOfDays ; i++){
+            System.out.printf("Enter the day of week %d of %d that you will attend school%n",
+                    i, numberOfDays);
+
+            sb.append(input.nextLine()).append(delimiter);//Thursday
+            //System.out.println(sb + " for testing");
+
+            Path dayOfWeekPath = semesterPath
+                    .resolve(
+                            sb.toString().split(delimiter)[sb.toString().split(delimiter).length - 1]
+                    + ".txt");
+
+            if(!Files.exists(dayOfWeekPath)){
+                Files.createFile(dayOfWeekPath);
+            }
+
+            while(true){
+                //2023-fall-thursday-
+                System.out.printf("Enter the time and course code " +
+                        "of your %s class separated by one space or type QUIT to exit",
+                        sb.toString().split(delimiter)[sb.toString().split(delimiter).length - 1]);
+                String[] data = input.nextLine().toLowerCase().trim().split(" ");
+                if(data.length < 2)
+                    break;
+                String time = data[0];
+                String courseCode = data[1];
+                String content = String.format("%s%s%s%n", time, delimiter, courseCode);
+                if(time.charAt(0)  == 'q' || courseCode.charAt(0)  == 'q'){
+                    break;
+                }
+
+                Files.writeString(dayOfWeekPath, content, StandardOpenOption.APPEND);
+                System.out.println("Course Add. Next up, time to add another course");
+            }
+        }
+        System.out.println("Thank you for using our program!");
+
     }
 
 }
