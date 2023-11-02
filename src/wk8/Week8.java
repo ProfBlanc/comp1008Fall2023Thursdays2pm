@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
 public class Week8 {
@@ -10,7 +11,7 @@ public class Week8 {
     public static void main(String[] args) {
            // example2();
         try{
-            example7();
+            example12();
         }
         catch (IOException e){
             System.err.println(e);
@@ -156,6 +157,43 @@ public class Week8 {
 
 
 
+    }
+
+    static void example8() throws IOException{
+        //rp = "./src"
+        //resolve.resole("data")
+        // new path = /src/data
+        Path p1= rootPath.resolve("myDir").resolve("d4");
+        Path p2= rootPath.resolve("data/d4");
+        Files.move(p1, p2);
+    }
+    static void example9() throws IOException{
+        //rp = "./src"
+        //resolve.resole("data")
+        // new path = /src/data
+        Path p2= rootPath.resolve("data/d4/f4.txt");
+        Path p1= rootPath.resolve("myDir/d4/f4.txt");
+        Files.copy(p2, p1);
+        //        Files.copy(p2, p1, StandardCopyOption.REPLACE_EXISTING);
+    }
+    static void example10() throws IOException{
+        Files.delete(rootPath.resolve("myDir/d5"));
+       boolean result = rootPath.resolve("myDir/d6").toFile().delete();
+    }
+
+    static void example11() throws IOException{
+
+        String content = "I love Java\n";
+        Path p1 = rootPath.resolve("data/test.txt");
+        Files.writeString(p1, content, StandardOpenOption.APPEND);
+
+
+    }
+
+    static void example12() throws IOException{
+
+        String content = Files.readString(rootPath.resolve("data/test.txt"));
+        System.out.println(content);
     }
 
 }
