@@ -1,18 +1,18 @@
-Add a toString method to Animal class
-	summarize the two instance variables
+
 Create a class called Canine
 	based on Animal
 	add 2 extra attributes (private)
 	add getters and setters
-	add 5 constructors with at least 1
-	includes the 2 extra attributes
+	add 5 constructors with at least 1 tjat oncludes the 2 extra attributes
 	Override the toString method to include the two additional attributes 
 	use super().toString() 
 
 
-Student: name, studentid, marks, age
-HonorRollStudent: prizes: marks need >=80
-MatureStudent: job, age needs >= 30
+Bonus
+
+Student: name, studentid, marks, age  : all private instance variables
+HonorRollStudent: prizes: marks need >=80  (Override setMarks)
+MatureStudent: job, age needs >= 30	   (Override setAge)
 
 
 			FIRST
