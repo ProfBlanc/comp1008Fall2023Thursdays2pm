@@ -179,10 +179,8 @@ class HelloWorld {
         }
 
     }
-    static void example7(){}
-    static void example8(){}
-    static void example9(){}
-    static void example10(){}
+    
+    
     public static void main(String[] args) {
        example6();
     }
