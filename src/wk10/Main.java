@@ -164,10 +164,122 @@ aka abstract methods: AI
 
 */
 
+abstract class Shape{
+    String name;
+    double length, width;
+    public Shape(){}
+    public Shape(String name, double length, double width){
+        this.name = name;
+        this.length=length;
+        this.width=width;
+    }
+    public abstract double area();
+    public abstract double perimeter();
+    public abstract void foo(int a, double b);
+}
+
+abstract class ThreeDShape extends Shape{
+    double depth;
+    abstract double volume();
+}
+class Cube extends ThreeDShape{
+    
+    @Override
+    public double volume(){
+        return length * width * depth;
+    }
+       @Override
+    public double area(){
+        return length * width;
+    }
+    @Override
+    public double perimeter(){
+        return  2 * (length + width);
+    }
+    public void foo(int a, double b){
+        System.out.println(a + " - " + b);
+    }
+    
+}
+
+
+class Rectangle extends Shape{
+    public Rectangle(){}
+    public Rectangle(String name, double length, double width){
+        super(name, length, width);
+    }
+    @Override
+    public double area(){
+        return length * width;
+    }
+    @Override
+    public double perimeter(){
+        return  2 * (length + width);
+    }
+    public void foo(int a, double b){
+        System.out.println(a + " - " + b);
+    }
+}
+
+
+interface CollegeCourse{
+    
+    int MAX_GRADE = 100, MIN_GRADE = 0;
+    
+    void assignments(String[] evaluations);
+    double tests(String test1, String test2);
+    
+}
+
+
+class Comp1008 extends Rectangle implements CollegeCourse{
+    
+    @Override
+    public void assignments(String[] evaluations){
+        for(String eval : evaluations){
+            System.out.println(eval);
+        }
+    }
+    @Override 
+    public double tests(String t1, String t2){
+        
+        return (t1.length() + t2.length()) / 2.0;
+    }
+}
+
+interface SampleInterface1{
+    void method1();
+}
+interface SampleInterface2{
+    void method2();
+}
+interface SampleInterface3{
+    void method3();
+}
+
+interface SampleInterface4 extends SampleInterface1, SampleInterface2, SampleInterface3{
+    void method4();
+}
+
+class SampleClass1 implements SampleInterface4{
+    
+    public void method1(){}
+    public void method2(){}
+    public void method3(){}
+    public void method4(){}
+    
+}
 
 
 class HelloWorld {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        Rectangle r1 = new Rectangle();
+        Shape s1 = new Rectangle();
+        CollegeCourse cc = new Comp1008();
+        System.out.println(cc.tests("Mid-Term", "Final Exam"));
+        Rectangle r2 = new Comp1008();
+        Shape s2 = new Comp1008();
+        
+
     }
 }
